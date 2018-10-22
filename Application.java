@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Application {
     private List<Integer> duplicatedElements;
-    private int[] numbers = {3,6,4,5,6,6,3,4,7,55,23,5};
+    private int[] numbers = {3,6,4,5,6,6,3,4,7,55,23,55,5};
 
 
     public Application(){
@@ -14,7 +14,7 @@ public class Application {
     public void handleApp(){
         findDuplicates();
         sortListOfNumbers();
-        System.out.println(duplicatedElements.toString());
+        System.out.println(duplicatedElements);
     }
 
 
@@ -24,7 +24,7 @@ public class Application {
             int counter = 0;
 
             for(int i=0; i<numbers.length; i++){
-                if (number == numbers[i] && !numberNotInList(number)) {
+                if (number == numbers[i] && numberNotInList(number)) {
                     counter++;
                 }
             }
@@ -47,14 +47,14 @@ public class Application {
 
 
     private void sortListOfNumbers(){
-        for (int number : duplicatedElements) {
+        for (int index=0;index<duplicatedElements.size(); index++) {
+
             for (int i=0; i<duplicatedElements.size()-1; i++) {
-                int first = duplicatedElements.get(i);
-                int next = duplicatedElements.get(i+1);
-                if (first>next) {
-                    int temp = first;
-                    first = next;
-                    next = temp;
+                if (duplicatedElements.get(i) > duplicatedElements.get(i+1)) {
+                    int first = duplicatedElements.get(i);
+                    int next = duplicatedElements.get(i+1);
+                    duplicatedElements.set(i, next);
+                    duplicatedElements.set(i+1, first);
                 }
             }
         }
