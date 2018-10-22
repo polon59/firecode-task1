@@ -14,7 +14,8 @@ public class Application {
     public void handleApp(){
         findDuplicates();
         sortListOfNumbers();
-        System.out.println(duplicatedElements);
+        String convertedList = convertToString();
+        System.out.println(convertedList);
     }
 
 
@@ -58,6 +59,16 @@ public class Application {
                 }
             }
         }
+    }
+
+
+    private String convertToString(){
+        StringBuilder sb = new StringBuilder();
+        for (int number : duplicatedElements) {
+            sb.append(number);
+            sb.append(",");
+        }
+        return sb.toString();
     }
     
 }
